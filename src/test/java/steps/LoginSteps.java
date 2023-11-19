@@ -1,29 +1,35 @@
 package steps;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
-
-import pages.LoginPage;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import pages.RegisterPage;
 import pojo.User;
 
 public class LoginSteps {
 
-    LoginPage loginPage = new LoginPage();
+    RegisterPage registerPage = new RegisterPage();
 
     User user = new User.UserBuilder()
-            .setUserName("User")
-            .setPassword("MySecretPassword")
+            .setFirstName("Andrei")
+            .setLastName("Pop")
             .build();
 
-    @Given("I have navigated to login page")
-    public void iHaveNavigatedToLoginPage() {
-        loginPage.validateHomePage();
+    @Given("I have navigated to register page")
+    public void iHaveNavigatedToRegisterPage() {
+        registerPage.validateRegisterPage();
     }
 
-    @And("I login with username and password")
-    public void iLoginWithUserNameAndPassword() {
-        loginPage.loginIn(user)
-                .clickLogin();
+    @When("I enter first and last name to Full Name box")
+    public void iRegisterWithFirstNameAndLastName() {
+        registerPage.acceptConsent();
+        registerPage.registerUser(user);
+    }
 
+    @Then("I refresh the page and navigate to Home Page")
+    public void iRefreshThePage() throws InterruptedException {
+        registerPage.clickRefresh();
+        registerPage.goToHomePage();
+        Thread.sleep(5000);
     }
 }

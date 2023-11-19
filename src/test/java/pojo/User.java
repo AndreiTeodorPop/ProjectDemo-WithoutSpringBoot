@@ -2,35 +2,35 @@ package pojo;
 
 public class User {
 
-    private String userName;
-    private String password;
+    private final String firstName;
+    private final String lastName;
 
     public User(UserBuilder builder) {
-        this.userName = builder.userName;
-        this.password = builder.password;
+        this.firstName = builder.firstName;
+        this.lastName = builder.lastName;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getLastName() {
+        return lastName;
     }
 
     public static class UserBuilder {
 
-        private String userName;
-        private String password;
+        private String firstName;
+        private String lastName;
 
 
-        public UserBuilder setUserName(String userName) {
-            this.userName = userName;
+        public UserBuilder setFirstName(String firstName) {
+            this.firstName = firstName;
             return this;
         }
 
-        public UserBuilder setPassword(String password) {
-            this.password = password;
+        public UserBuilder setLastName(String lastName) {
+            this.lastName = lastName;
             return this;
         }
 
